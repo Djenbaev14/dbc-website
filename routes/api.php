@@ -4,6 +4,7 @@ use App\Http\Controllers\AdvantageController;
 use App\Http\Controllers\CompanyStateController;
 use App\Http\Controllers\FooterSettingController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\ProjectController;
 use App\Models\CompanyStat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +31,5 @@ Route::apiResources([
     'company-state' => CompanyStateController::class,
     'footer' => FooterSettingController::class,
     'partners' => PartnerController::class,
+    'projects' => ProjectController::class,
 ]);
