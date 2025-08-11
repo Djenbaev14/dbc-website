@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdvantageController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CompanyStateController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\FooterSettingController;
@@ -38,6 +39,7 @@ Route::apiResources([
     'feedbacks' => FeedbackController::class,
     'services' => ServiceController::class,
     'team' => TeamController::class,
+    'banner' => BannerController::class,
 ]);
 // form post
 Route::post('form', [FormController::class, 'store'])->name('form.store');

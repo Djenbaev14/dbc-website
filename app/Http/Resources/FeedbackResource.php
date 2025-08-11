@@ -17,7 +17,7 @@ class FeedbackResource extends JsonResource
         return [
             'name'=>$this->name,
             'company_name'=>$this->company_name,
-            'avatar'=>$this->avatar,
+            'avatar'=> 'storage/'.$this->avatar,
             'feedback'=>$this->feedback,
         ];
     }

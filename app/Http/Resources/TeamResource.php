@@ -17,7 +17,7 @@ class TeamResource extends JsonResource
         return [
             'name' => $this->name,
             'position' => $this->position,
-            'avatar' => $this->avatar,
+            'avatar' =>'storage/'.$this->avatar,
         ];
     }
 }
