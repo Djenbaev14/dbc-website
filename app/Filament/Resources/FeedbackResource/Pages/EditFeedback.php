@@ -1,22 +1,19 @@
 <?php
 
-namespace App\Filament\Resources\AdvantageResource\Pages;
+namespace App\Filament\Resources\FeedbackResource\Pages;
 
-use App\Filament\Resources\AdvantageResource;
+use App\Filament\Resources\FeedbackResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditAdvantage extends EditRecord
+class EditFeedback extends EditRecord
 {
-    
-    use EditRecord\Concerns\Translatable;
-    protected static string $resource = AdvantageResource::class;
+    protected static string $resource = FeedbackResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
             Actions\DeleteAction::make(),
-            Actions\LocaleSwitcher::make(),
         ];
     }
     protected function getRedirectUrl(): string

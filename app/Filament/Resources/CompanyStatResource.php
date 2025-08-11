@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CompanyStatResource extends Resource
 {
-    use Translatable;
     protected static ?string $model = CompanyStat::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -41,16 +40,6 @@ class CompanyStatResource extends Resource
                                 '1:1',
                             ])
                             ->columnSpan(12),
-                        Forms\Components\TextInput::make('title')
-                            ->label('Заголовок')
-                            ->required()
-                            ->maxLength(255)
-                            ->columnSpan(6),
-                        Forms\Components\Textarea::make('description')
-                            ->label('Текст абзац')
-                            ->required()
-                            ->maxLength(500)
-                            ->columnSpan(6),
                         Forms\Components\TextInput::make('experience_years')
                             ->label('Годовой опыт')
                             ->required()

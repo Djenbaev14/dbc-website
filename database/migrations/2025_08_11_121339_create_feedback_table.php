@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('top_banners', function (Blueprint $table) {
+        Schema::create('feedback', function (Blueprint $table) {
             $table->id();
-            $table->json('title')->nullable(); // banner sarlavhasi
-            $table->string('desktop_image')->nullable(); // banner rasmi (path)
-            $table->string('phone_image')->nullable(); // banner rasmi (path)
+            $table->string('name')->nullable();
+            $table->string('company_name')->nullable();
+            $table->string('avatar')->nullable();
+            $table->text('feedback')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('top_banners');
+        Schema::dropIfExists('feedback');
     }
 };

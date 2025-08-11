@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Resources\ServiceResource;
+use App\Models\Service;
+use Illuminate\Http\Request;
+
+class ServiceController extends Controller
+{
+    public function index(){
+        $services = Service::orderBy('id','desc')->get();
+        return $this->responsePagination($services, ServiceResource::collection($services));
+    }
+}

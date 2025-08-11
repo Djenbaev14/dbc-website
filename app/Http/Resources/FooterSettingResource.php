@@ -22,7 +22,6 @@ class FooterSettingResource extends JsonResource
             'telegram' => $this->telegram,
             'linkedin' => $this->linkedin,
             'youtube' => $this->youtube,
-            'copyright' => $this->copyright,
         ];
     }
 }

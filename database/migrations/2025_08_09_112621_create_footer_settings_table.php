@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('youtube')->nullable();
 
-            $table->json('copyright')->nullable(); // mualliflik huquqi matni
             $table->timestamps();
         });
     }

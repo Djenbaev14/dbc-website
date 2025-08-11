@@ -9,7 +9,6 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateFooterSetting extends CreateRecord
 {
     protected static string $resource = FooterSettingResource::class;
-    use CreateRecord\Concerns\Translatable;
     protected function getHeaderActions(): array
     {
         return [
@@ -18,7 +17,6 @@ class CreateFooterSetting extends CreateRecord
     }
     protected function getRedirectUrl(): string
     {
-        // edit page after creation 1   
         return $this->getResource()::getUrl('edit', ['record' => $this->getRecord()]);
     }
 }

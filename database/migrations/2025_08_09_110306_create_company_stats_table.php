@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('company_stats', function (Blueprint $table) {
             $table->id();
-            $table->json('title')->nullable(); // asosiy sarlavha
-            $table->json('description')->nullable(); // kichik matn
             $table->string('experience_years')->nullable(); // masalan: "10 yil"
             $table->string('specialists_count')->nullable(); // masalan: "20+"
             $table->string('clients_count')->nullable(); // masalan: "50+"

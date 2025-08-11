@@ -12,13 +12,9 @@ class CompanyStat extends Model
     protected $guarded = ['id'];
 
     protected $casts = [
-        'title' => 'array',
-        'description' => 'array',
         'experience_years' => 'integer',
         'specialists_count' => 'integer',
         'clients_count' => 'integer',
         'projects_count' => 'integer',
     ];
-    
-    public $translatable=['title', 'description'];
 }

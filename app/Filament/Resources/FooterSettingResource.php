@@ -66,11 +66,6 @@ class FooterSettingResource extends Resource
                                 ->required()
                                 ->maxLength(255) 
                                 ->columnSpan(6),
-                            Textarea::make('copyright')
-                                ->label('Текст авторских прав')
-                                ->required()
-                                ->maxLength(255) 
-                                ->columnSpan(6),
                         ]
                     )->columns(12)->columnSpan(12)
             ]);

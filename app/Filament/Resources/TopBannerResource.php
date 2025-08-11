@@ -8,6 +8,7 @@ use App\Models\TopBanner;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
@@ -29,25 +30,11 @@ class TopBannerResource extends Resource
             ->schema([
                 Group::make()
                     ->schema([
-                        Group::make()
-                            ->schema([
-                                Forms\Components\TextInput::make('title')
+                                TextInput::make('title')
                                     ->label('Текст заголовка')
                                     ->required()
                                     ->maxLength(255)
-                                    ->columnSpan(6),
-                                Forms\Components\Textarea::make('description')
-                                    ->label('Текст абзац')
-                                    ->required()
-                                    ->maxLength(500)
-                                    ->columnSpan(6),
-                                Forms\Components\TextInput::make('button_text')
-                                    ->label('Кнопка Текст')
-                                    ->required()
-                                    ->columnSpan(6),
-                            ])->columns(6)->columnSpan(6),
-                        Group::make()
-                            ->schema([
+                                    ->columnSpan(12),
                                 FileUpload::make('desktop_image')
                                     ->image()
                                     ->label('Десктоп Фото')
@@ -59,7 +46,7 @@ class TopBannerResource extends Resource
                                         '4:3',
                                         '1:1',
                                     ])
-                                    ->columnSpan(6),
+                                    ->columnSpan(12),
                                 FileUpload::make('phone_image')
                                     ->image()
                                     ->label('Телефон Фото')
@@ -71,8 +58,7 @@ class TopBannerResource extends Resource
                                         '4:3',
                                         '1:1',
                                     ])
-                                    ->columnSpan(6),
-                            ])->columns(6)->columnSpan(6),
+                                    ->columnSpan(12),
                     ])->columns(12)->columnSpan(12)
             ]);
     }

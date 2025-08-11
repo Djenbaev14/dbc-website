@@ -10,9 +10,4 @@ class FooterSetting extends Model
 {
     use HasFactory,HasTranslations;
     protected $guarded = ['id'];
-
-    protected $casts = [
-        'copyright' => 'array',
-    ];
-    protected $translatable = ['copyright'];
 }

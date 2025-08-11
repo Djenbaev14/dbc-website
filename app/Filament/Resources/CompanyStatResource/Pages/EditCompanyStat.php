@@ -10,13 +10,11 @@ class EditCompanyStat extends EditRecord
 {
     protected static string $resource = CompanyStatResource::class;
 
-    use EditRecord\Concerns\Translatable;
 
     protected function getHeaderActions(): array
     {
         return [
             Actions\DeleteAction::make(),
-            Actions\LocaleSwitcher::make(),
         ];
     }
 }

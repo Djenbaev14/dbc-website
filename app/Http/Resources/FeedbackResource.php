@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AdvantageResource extends JsonResource
+class FeedbackResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +15,10 @@ class AdvantageResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'title' => $this->header,
-            'description' => $this->description,
-            'icon'=> 'storage/'.$this->icon,
+            'name'=>$this->name,
+            'company_name'=>$this->company_name,
+            'avatar'=>$this->avatar,
+            'feedback'=>$this->feedback,
         ];
     }
 }

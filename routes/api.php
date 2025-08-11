@@ -2,9 +2,13 @@
 
 use App\Http\Controllers\AdvantageController;
 use App\Http\Controllers\CompanyStateController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\FooterSettingController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TeamController;
 use App\Models\CompanyStat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,9 +31,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::apiResources([
-    'advantages' => AdvantageController::class,
     'company-state' => CompanyStateController::class,
     'footer' => FooterSettingController::class,
     'partners' => PartnerController::class,
     'projects' => ProjectController::class,
+    'feedbacks' => FeedbackController::class,
+    'services' => ServiceController::class,
+    'team' => TeamController::class,
 ]);
+// form post
+Route::post('form', [FormController::class, 'store'])->name('form.store');

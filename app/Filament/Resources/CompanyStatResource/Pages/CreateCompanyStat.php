@@ -9,7 +9,6 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateCompanyStat extends CreateRecord
 {
     protected static string $resource = CompanyStatResource::class;
-    use CreateRecord\Concerns\Translatable;
     protected function getHeaderActions(): array
     {
         return [

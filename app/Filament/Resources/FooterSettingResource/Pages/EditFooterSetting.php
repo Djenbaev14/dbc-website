@@ -10,13 +10,11 @@ class EditFooterSetting extends EditRecord
 {
     protected static string $resource = FooterSettingResource::class;
 
-    use EditRecord\Concerns\Translatable;
 
     protected function getHeaderActions(): array
     {
         return [
             Actions\DeleteAction::make(),
-            Actions\LocaleSwitcher::make(),
         ];
     }
 }
