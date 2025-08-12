@@ -10,4 +10,7 @@ class FooterSetting extends Model
 {
     use HasFactory,HasTranslations;
     protected $guarded = ['id'];
+    protected $casts = [
+        'social_links' => 'array',
+    ];
 }

@@ -15,14 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-
-            // Ijtimoiy tarmoq linklari
-            $table->string('instagram')->nullable();
-            $table->string('telegram')->nullable();
-            $table->string('linkedin')->nullable();
-            $table->string('facebook')->nullable();
-            $table->string('youtube')->nullable();
-
+            $table->json('social_links')->nullable(); // Ijtimoiy tarmoq linklari
             $table->timestamps();
         });
     }

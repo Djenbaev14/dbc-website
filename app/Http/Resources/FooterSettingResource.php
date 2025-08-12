@@ -17,11 +17,7 @@ class FooterSettingResource extends JsonResource
         return [
             'email' => $this->email,
             'phone' => $this->phone,
-            'instagram'=> $this->instagram,
-            'facebook' => $this->facebook,
-            'telegram' => $this->telegram,
-            'linkedin' => $this->linkedin,
-            'youtube' => $this->youtube,
+            'social_links'=> $this->social_links,
         ];
     }
 }

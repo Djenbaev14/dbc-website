@@ -7,6 +7,7 @@ use App\Filament\Resources\FooterSettingResource\RelationManagers;
 use App\Models\FooterSetting;
 use Filament\Forms;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -41,31 +42,12 @@ class FooterSettingResource extends Resource
                                 ->required()
                                 ->maxLength(20)
                                 ->columnSpan(6),
-                            TextInput::make('instagram')
-                                ->label('Instagram')
-                                ->required()
-                                ->maxLength(255)
-                                ->columnSpan(6),
-                            TextInput::make('facebook')
-                                ->label('Facebook')
-                                ->required()
-                                ->maxLength(255)
-                                ->columnSpan(6),
-                            TextInput::make('telegram')
-                                ->label('Telegram')
-                                ->required()
-                                ->maxLength(255)
-                                ->columnSpan(6),
-                            TextInput::make('youtube')
-                                ->label('YouTube')
-                                ->required()
-                                ->maxLength(255) 
-                                ->columnSpan(6),
-                            TextInput::make('linkedin')
-                                ->label('LinkedIn')
-                                ->required()
-                                ->maxLength(255) 
-                                ->columnSpan(6),
+                            // social links json field
+                            
+                            KeyValue::make('social_links')
+                                ->label('Социальные ссылки')
+                                ->reorderable()
+                                ->columnSpan(12),
                         ]
                     )->columns(12)->columnSpan(12)
             ]);
