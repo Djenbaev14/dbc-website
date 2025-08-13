@@ -12,7 +12,6 @@ class ProjectController extends Controller
         $projects = Project::orderBy('id','desc')->get();
         return $this->responsePagination($projects, ProjectResource::collection($projects));
     }
-    // view 
     public function show(Project $project){
         return new ProjectResource($project);
     }

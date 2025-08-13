@@ -32,8 +32,13 @@ class ProjectResource extends Resource
             ->schema([
                 Group::make()
                     ->schema([
-                        TextInput::make('name')
+                        TextInput::make('title')
                             ->label('Название')
+                            ->required()
+                            ->maxLength(255)
+                            ->columnSpan(12),
+                        TextInput::make('sub_title')
+                            ->label('Подзаголовок')
                             ->required()
                             ->maxLength(255)
                             ->columnSpan(12),
@@ -74,7 +79,7 @@ class ProjectResource extends Resource
                     ->stacked()
                     ->simpleLightbox(fn ($record) =>  $record?->image ?? "Your Image Url address", defaultDisplayUrl: true)
                     ->sortable(),
-                TextColumn::make('name')
+                TextColumn::make('title')
                     ->label('Название')
                     ->sortable()
                     ->searchable()

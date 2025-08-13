@@ -12,9 +12,10 @@ class Project extends Model
     protected $guarded = ['id'];
 
     protected $casts = [
-        'name' => 'array',
+        'title' => 'array',
+        'sub_title' => 'array',
         'description' => 'array',
         'images' => 'array',
     ];
-    protected $translatable = ['name', 'description'];
+    protected $translatable = ['title','sub_title', 'description'];
 }
