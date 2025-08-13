@@ -56,8 +56,8 @@ class ProjectResource extends Resource
                             ->imageEditor()
                             ->reorderable()
                             ->nullable()
-                            ->maxFiles(6)
-                            ->maxSize(6 * 1024)
+                            ->maxFiles(8)
+                            ->maxSize(8 * 1024)
                             ->imageEditorAspectRatios([
                                 '16:9',
                                 '4:3',
