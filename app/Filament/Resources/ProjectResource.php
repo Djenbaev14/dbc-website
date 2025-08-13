@@ -8,6 +8,7 @@ use App\Models\Project;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
@@ -42,10 +43,9 @@ class ProjectResource extends Resource
                             ->required()
                             ->maxLength(255)
                             ->columnSpan(12),
-                        TextInput::make('description')
+                        Textarea::make('description')
                             ->label('Описание')
                             ->required()
-                            ->maxLength(255)
                             ->columnSpan(12),
                         FileUpload::make('images')
                             ->image()
