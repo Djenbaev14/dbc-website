@@ -61,6 +61,7 @@ class ServiceResource extends Resource
                     ->sortable()
                     ->searchable()
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
