@@ -14,8 +14,20 @@ class CompanyStateResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        
+        $lang = [
+            'uz' => 'uz',
+            'ru' => 'ru',
+            'en' => 'en',
+            'qr' => 'qr',
+        ][$request->header('Accept-Language', 'uz')];
         return [
-            'infos'=>$this->infos,
+            'infos' => collect($this->infos)->map(function ($info) use ($lang) {
+                return [
+                    'title' => $info['title'][$lang] ?? null,
+                    'desc'  => $info['desc'][$lang] ?? null,
+                ];
+            }),
             'image'=> 'storage/'.$this->image,
         ];
     }
