@@ -8,6 +8,11 @@ use App\Models\CompanyStat;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
@@ -28,34 +33,48 @@ class CompanyStatResource extends Resource
             ->schema([
                 Group::make()
                     ->schema([
-                        FileUpload::make('image')
-                            ->image()
-                            ->label('Изображение')
-                            ->disk('public') 
-                            ->directory('company_stats') 
-                            ->imageEditor()
-                            ->imageEditorAspectRatios([
-                                '16:9',
-                                '4:3',
-                                '1:1',
-                            ])
-                            ->columnSpan(12),
-                        Forms\Components\TextInput::make('experience_years')
-                            ->label('Годовой опыт')
-                            ->required()
-                            ->columnSpan(3),
-                        Forms\Components\TextInput::make('specialists_count')
-                            ->label('Количество специалистов')
-                            ->required()
-                            ->columnSpan(3),
-                        Forms\Components\TextInput::make('clients_count')
-                            ->label('Количество клиентов')
-                            ->required()
-                            ->columnSpan(3),
-                        Forms\Components\TextInput::make('projects_count')
-                            ->label('Количество проектов')
-                            ->required()
-                            ->columnSpan(3),
+                            Repeater::make('infos')
+                                ->label('Информация')
+                                ->schema([
+                                    Tabs::make('LanguageTabs')
+                                        ->tabs([
+                                            Tab::make('O‘zbek')
+                                                ->schema([
+                                                    TextInput::make('title.uz')->label(' (UZ)'),
+                                                    Textarea::make('desc.uz')->label('Tavsif (UZ)'),
+                                                ]),
+                                            Tab::make('Русский')
+                                                ->schema([
+                                                    TextInput::make('title.ru')->label('Заголовок (RU)'),
+                                                    Textarea::make('desc.ru')->label('Описание (RU)'),
+                                                ]),
+                                            Tab::make('English')
+                                                ->schema([
+                                                    TextInput::make('title.en')->label('Title (EN)'),
+                                                    Textarea::make('desc.en')->label('Description (EN)'),
+                                                ]),
+                                            Tab::make('Qaraqalpaq')
+                                                ->schema([
+                                                    TextInput::make('title.qr')->label('Sarlawha (QR)'),
+                                                    Textarea::make('desc.qr')->label('Tawsiw (QR)'),
+                                                ]),
+                                        ])
+                                        ->persistTabInQueryString() // Sahifa yangilansa ham tanlangan til saqlanadi
+                                ])
+                                ->defaultItems(1)
+                                ->columnSpanFull(),
+                            FileUpload::make('image')
+                                ->image()
+                                ->label('Изображение')
+                                ->disk('public') 
+                                ->directory('company_stats') 
+                                ->imageEditor()
+                                ->imageEditorAspectRatios([
+                                    '16:9',
+                                    '4:3',
+                                    '1:1',
+                                ])
+                                ->columnSpan(12),
                     ])->columns(12)->columnSpan(12),
             ]);
     }

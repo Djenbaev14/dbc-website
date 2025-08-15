@@ -12,9 +12,6 @@ class CompanyStat extends Model
     protected $guarded = ['id'];
 
     protected $casts = [
-        'experience_years' => 'integer',
-        'specialists_count' => 'integer',
-        'clients_count' => 'integer',
-        'projects_count' => 'integer',
+        'infos' => 'array',
     ];
 }
