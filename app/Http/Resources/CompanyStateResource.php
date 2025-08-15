@@ -15,10 +15,7 @@ class CompanyStateResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'experience_years'=>$this->experience_years,
-            'specialists_count'=>$this->specialists_count,
-            'clients_count'=>$this->clients_count,
-            'projects_count'=>$this->projects_count,
+            'infos'=>$this->infos,
             'image'=> 'storage/'.$this->image,
         ];
     }
