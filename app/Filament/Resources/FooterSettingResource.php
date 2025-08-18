@@ -6,8 +6,10 @@ use App\Filament\Resources\FooterSettingResource\Pages;
 use App\Filament\Resources\FooterSettingResource\RelationManagers;
 use App\Models\FooterSetting;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\KeyValue;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -43,11 +45,34 @@ class FooterSettingResource extends Resource
                                 ->maxLength(20)
                                 ->columnSpan(6),
                             // social links json field
-                            
-                            KeyValue::make('social_links')
-                                ->label('Социальные ссылки')
-                                ->reorderable()
+                            Repeater::make('social_links')
+                                ->schema([
+                                    FileUpload::make('icon')
+                                        ->image()
+                                        ->label('Иконка')
+                                        ->disk('public') 
+                                        ->directory('social-icons') 
+                                        ->imageEditor()
+                                        ->imageEditorAspectRatios([
+                                            '16:9',
+                                            '4:3',
+                                            '1:1',
+                                        ])
+                                        ->columnSpan(6),
+                                    TextInput::make('url')
+                                        ->label('Social Link')
+                                        ->placeholder('https://t.me/username')
+                                        ->columnSpan(6),
+                                ])
+                                ->label('Social Links')
+                                ->defaultItems(1)
+                                ->columns(12)
                                 ->columnSpan(12),
+
+                            // KeyValue::make('social_links')
+                            //     ->label('Социальные ссылки')
+                            //     ->reorderable()
+                            //     ->columnSpan(12),
                         ]
                     )->columns(12)->columnSpan(12)
             ]);
