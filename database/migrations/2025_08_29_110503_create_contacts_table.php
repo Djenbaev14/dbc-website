@@ -13,11 +13,7 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->json('email')->nullable(); // email manzili
-            $table->json('phone')->nullable(); // telefon raqami
-            $table->string('work_days')->nullable();          // Masalan: Du–Ju
-            $table->string('work_time')->nullable();          // Masalan: 09:00 – 18:00
-            $table->string('lunch_time')->nullable();   
+            $table->json('infos')->nullable(); 
             $table->text('location')->nullable(); // Stores coordinates as JSON string
             $table->timestamps();
         });

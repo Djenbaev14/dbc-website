@@ -6,6 +6,7 @@ use App\Filament\Resources\ContactResource\Pages;
 use App\Filament\Resources\ContactResource\RelationManagers;
 use App\Models\Contact;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -25,34 +26,38 @@ class ContactResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Repeater::make('email')
-                    ->label('E-mail')
-                    ->minItems(1)
-                    ->maxItems(5)
+                Forms\Components\Repeater::make('infos')
                     ->schema([
-                        Forms\Components\TextInput::make('email')
-                            ->label('Email')
-                            ->email()
+                        FileUpload::make('icon')
+                            ->label('Icon')
+                            ->image()
+                            ->directory('contacts')
+                            ->maxSize(1024) // Maksimal fayl o'lchami (KB)
+                            ->imagePreviewHeight('100') // Oldindan ko'rish balandligi (px)
+                            ->columnSpanFull()
                             ->required(),
-                    ])
-                    ->collapsible(),
-                Repeater::make('phone')
-                    ->label('Phone')
-                    ->columns(1)
-                    ->minItems(1)
-                    ->maxItems(5)
-                    ->createItemButtonLabel('Add Phone')
+                        Forms\Components\Group::make()
+                            ->label('Title (ko‘p tilli)')
+                            ->schema([
+                                Forms\Components\TextInput::make('title.uz')
+                                    ->label('Title (uz)')
+                                    ->required(),
+                                Forms\Components\TextInput::make('title.qr')
+                                    ->label('Title (qr)')
+                                    ->required(),
+                                Forms\Components\TextInput::make('title.ru')
+                                    ->label('Title (ru)')
+                                    ->required(),
+                                Forms\Components\TextInput::make('title.en')
+                                    ->label('Title (en)')
+                                    ->required(),
+                            ]),
+
+                Forms\Components\Repeater::make('descriptions')
                     ->schema([
-                        Forms\Components\TextInput::make('phone')
-                            ->required()
-                            ->maxLength(20),
-                    ]), 
-                Forms\Components\TextInput::make('work_days')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('work_time')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('lunch_time')
-                    ->maxLength(255),
+                        Forms\Components\Textarea::make('desc'),
+                    ]),
+                ]),
                 LeafletMapPicker::make('location')
                     ->label('Property Location')
             ]);
