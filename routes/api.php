@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdvantageController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CompanyStateController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\FooterSettingController;
 use App\Http\Controllers\FormController;
@@ -40,6 +41,7 @@ Route::apiResources([
     'services' => ServiceController::class,
     'team' => TeamController::class,
     'banner' => BannerController::class,
+    'contact' => ContactController::class,
 ]);
 // form post
 Route::post('form', [FormController::class, 'store'])->name('form.store');
