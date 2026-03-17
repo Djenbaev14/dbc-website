@@ -74,7 +74,7 @@ class ContactResource extends Resource
     public static function getNavigationUrl(): string
     {
         // agar TopBanner mavjud bo'lsa, unga o'tadi, aks holda TopBanner yaratish sahifasiga yo'naltiradi
-        return static::getUrl('edit', ['record' => Contact::first() ?? null]) ?? static::getUrl('create');
+        return Contact::exists() ? static::getUrl('edit', ['record' => Contact::first()]) : static::getUrl('create');
     }
 
     public static function table(Table $table): Table
@@ -137,7 +137,6 @@ class ContactResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListContacts::route('/'),
             'create' => Pages\CreateContact::route('/create'),
             'edit' => Pages\EditContact::route('/{record}/edit'),
         ];
