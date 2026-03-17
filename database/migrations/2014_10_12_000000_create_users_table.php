@@ -23,7 +23,7 @@ return new class extends Migration
         DB::table('users')->insert([
             'name' => 'Admin',
             'username' => 'admin',
-            'password' => bcrypt('admin'),
+            'password' => Hash::make('D2srRl_L'), // parolni hash qilish
             'created_at' => now(),
             'updated_at' => now(),
         ]);
