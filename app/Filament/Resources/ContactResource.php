@@ -32,9 +32,18 @@ class ContactResource extends Resource
                             ->label('Icon')
                             ->image()
                             ->directory('contacts')
-                            ->maxSize(1024) // Maksimal fayl o'lchami (KB)
-                            ->imagePreviewHeight('100') // Oldindan ko'rish balandligi (px)
+                            ->maxSize(1024) 
+                            ->imagePreviewHeight('100') 
                             ->columnSpanFull()
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:1024'])
+                            ->getUploadedFileNameForStorageUsing(function ($file) {
+                                if (!getimagesize($file->getRealPath())) {
+                                    throw new \Exception('Bu haqiqiy rasm emas!');
+                                }
+
+                                return uniqid() . '.' . $file->getClientOriginalExtension();
+                            })
                             ->required(),
                         Forms\Components\Group::make()
                             ->label('Title (ko‘p tilli)')
@@ -65,7 +74,7 @@ class ContactResource extends Resource
     public static function getNavigationUrl(): string
     {
         // agar TopBanner mavjud bo'lsa, unga o'tadi, aks holda TopBanner yaratish sahifasiga yo'naltiradi
-        return Contact::exists() ? static::getUrl('edit', ['record' => 1]) : static::getUrl('create');
+        return static::getUrl('edit', ['record' => Contact::first() ?? null]) ?? static::getUrl('create');
     }
 
     public static function table(Table $table): Table

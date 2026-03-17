@@ -41,6 +41,16 @@ class TeamResource extends Resource
                                     ->columnSpan(6),
                             ])->columnSpan(6)->columns(6),
                         FileUpload::make('avatar')
+                            ->image()
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:1024'])
+                            ->getUploadedFileNameForStorageUsing(function ($file) {
+                                if (!getimagesize($file->getRealPath())) {
+                                    throw new \Exception('Bu haqiqiy rasm emas!');
+                                }
+
+                                return uniqid() . '.' . $file->getClientOriginalExtension();
+                            })
                             ->label('Аватар')
                             ->disk('public')
                             ->directory('teams')

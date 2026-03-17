@@ -49,6 +49,16 @@ class FeedbackResource extends Resource
                             ->label('Аватар')
                             ->disk('public')
                             ->directory('partners')
+                            ->image()
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:1024'])
+                            ->getUploadedFileNameForStorageUsing(function ($file) {
+                                if (!getimagesize($file->getRealPath())) {
+                                    throw new \Exception('Bu haqiqiy rasm emas!');
+                                }
+
+                                return uniqid() . '.' . $file->getClientOriginalExtension();
+                            })
                             ->required()
                             ->columnSpan(4),
                     ])->columns(12)->columnSpan(12)

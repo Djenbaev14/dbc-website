@@ -36,6 +36,15 @@ class PartnerResource extends Resource
                         Forms\Components\FileUpload::make('logo')
                             ->label('Логотип')
                             ->image()
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:1024'])
+                            ->getUploadedFileNameForStorageUsing(function ($file) {
+                                if (!getimagesize($file->getRealPath())) {
+                                    throw new \Exception('Bu haqiqiy rasm emas!');
+                                }
+
+                                return uniqid() . '.' . $file->getClientOriginalExtension();
+                            })
                             ->disk('public')
                             ->directory('partners')
                             ->nullable()

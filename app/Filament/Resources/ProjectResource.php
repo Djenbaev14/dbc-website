@@ -51,6 +51,15 @@ class ProjectResource extends Resource
                             ->image()
                             ->label('Фото')
                             ->disk('public') 
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:1024'])
+                            ->getUploadedFileNameForStorageUsing(function ($file) {
+                                if (!getimagesize($file->getRealPath())) {
+                                    throw new \Exception('Bu haqiqiy rasm emas!');
+                                }
+
+                                return uniqid() . '.' . $file->getClientOriginalExtension();
+                            })
                             ->directory('projects') 
                             ->multiple()
                             ->imageEditor()

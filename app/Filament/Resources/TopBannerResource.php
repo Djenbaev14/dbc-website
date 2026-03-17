@@ -37,6 +37,15 @@ class TopBannerResource extends Resource
                                     ->columnSpan(12),
                                 FileUpload::make('desktop_image')
                                     ->image()
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:1024'])
+                                    ->getUploadedFileNameForStorageUsing(function ($file) {
+                                        if (!getimagesize($file->getRealPath())) {
+                                            throw new \Exception('Bu haqiqiy rasm emas!');
+                                        }
+
+                                        return uniqid() . '.' . $file->getClientOriginalExtension();
+                                    })
                                     ->label('Десктоп Фото')
                                     ->disk('public') 
                                     ->directory('top_banners/desktop') 
@@ -49,6 +58,15 @@ class TopBannerResource extends Resource
                                     ->columnSpan(12),
                                 FileUpload::make('phone_image')
                                     ->image()
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:1024'])
+                                    ->getUploadedFileNameForStorageUsing(function ($file) {
+                                        if (!getimagesize($file->getRealPath())) {
+                                            throw new \Exception('Bu haqiqiy rasm emas!');
+                                        }
+
+                                        return uniqid() . '.' . $file->getClientOriginalExtension();
+                                    })
                                     ->label('Телефон Фото')
                                     ->disk('public') 
                                     ->directory('top_banners/phone') 

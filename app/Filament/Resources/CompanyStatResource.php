@@ -69,6 +69,14 @@ class CompanyStatResource extends Resource
                                 ->disk('public') 
                                 ->directory('company_stats') 
                                 ->imageEditor()
+                                ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:1024'])
+                                ->getUploadedFileNameForStorageUsing(function ($file) {
+                                    if (!getimagesize($file->getRealPath())) {
+                                        throw new \Exception('Bu haqiqiy rasm emas!');
+                                    }
+                                    return uniqid() . '.' . $file->getClientOriginalExtension();
+                                })
                                 ->imageEditorAspectRatios([
                                     '16:9',
                                     '4:3',
