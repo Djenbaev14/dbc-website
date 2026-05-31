@@ -13,7 +13,13 @@ class BannerController extends Controller
     // For example, you might have methods like index, store, update, destroy, etc.
     
     public function index(){
-        return new BannerResource(TopBanner::first());
+        $banner = TopBanner::first();
+
+        if (! $banner) {
+            return response()->json(['data' => null]);
+        }
+
+        return new BannerResource($banner);
     }
 
 }

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class CompanyStateController extends Controller
 {
     public function index(){
-        $setting = CompanyStat::firstOrFail();
-        return $this->responsePagination($setting, new CompanyStateResource($setting));
+        $setting = CompanyStat::first();
+        return $this->responsePagination($setting, $setting ? new CompanyStateResource($setting) : null);
     }
 }
