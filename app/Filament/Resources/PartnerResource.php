@@ -37,7 +37,7 @@ class PartnerResource extends Resource
                             ->label('Логотип')
                             ->image()
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                            ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:1024'])
+                            ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:2048'])
                             ->getUploadedFileNameForStorageUsing(function ($file) {
                                 if (!getimagesize($file->getRealPath())) {
                                     throw new \Exception('Bu haqiqiy rasm emas!');

@@ -32,11 +32,11 @@ class ContactResource extends Resource
                             ->label('Icon')
                             ->image()
                             ->directory('contacts')
-                            ->maxSize(1024) 
+                            ->maxSize(2048) 
                             ->imagePreviewHeight('100') 
                             ->columnSpanFull()
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                            ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:1024'])
+                            ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:2048'])
                             ->getUploadedFileNameForStorageUsing(function ($file) {
                                 if (!getimagesize($file->getRealPath())) {
                                     throw new \Exception('Bu haqiqiy rasm emas!');

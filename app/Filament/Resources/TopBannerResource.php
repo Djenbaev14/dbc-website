@@ -38,7 +38,7 @@ class TopBannerResource extends Resource
                                 FileUpload::make('desktop_image')
                                     ->image()
                                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                                    ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:1024'])
+                                    ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:2048'])
                                     ->getUploadedFileNameForStorageUsing(function ($file) {
                                         if (!getimagesize($file->getRealPath())) {
                                             throw new \Exception('Bu haqiqiy rasm emas!');
@@ -59,7 +59,7 @@ class TopBannerResource extends Resource
                                 FileUpload::make('phone_image')
                                     ->image()
                                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                                    ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:1024'])
+                                    ->rules(['required', 'file', 'mimes:jpeg,png,webp', 'max:2048'])
                                     ->getUploadedFileNameForStorageUsing(function ($file) {
                                         if (!getimagesize($file->getRealPath())) {
                                             throw new \Exception('Bu haqiqiy rasm emas!');
