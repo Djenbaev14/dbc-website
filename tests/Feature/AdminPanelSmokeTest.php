@@ -31,7 +31,7 @@ class AdminPanelSmokeTest extends TestCase
                 }
                 $url = $resource::getUrl($page);
                 $status = $this->get($url)->status();
-                if ($status >= 500) {
+                if ($status !== 200) {
                     $failures[] = sprintf('%s [%s] -> %d  (%s)', class_basename($resource), $page, $status, $url);
                 }
             }
