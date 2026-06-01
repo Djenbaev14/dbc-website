@@ -14,9 +14,7 @@ class TopBanner extends Model
 
     protected $casts =[
         'title' => 'array',
-        'description' => 'array',
-        'button_text' => 'array',
     ];
-    public $translatable=['title','description','button_text'];
+    public $translatable=['title'];
 
 }

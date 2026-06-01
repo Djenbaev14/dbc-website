@@ -14,6 +14,7 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        // The site root intentionally redirects to the Filament admin panel.
+        $response->assertRedirect('/admin');
     }
 }
